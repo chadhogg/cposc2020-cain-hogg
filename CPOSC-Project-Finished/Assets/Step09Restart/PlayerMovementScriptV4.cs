@@ -7,15 +7,21 @@ public class PlayerMovementScriptV4 : MonoBehaviour
 {
     private Rigidbody2D rb;
     private GameObject ground;
+    // <NEW
     private GameObject restartText;
+    // NEW>
     public float horizontalForce = 7.0F;
     public float verticalForce = 250.0F;
-    // Start is called before the first frame update
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        // <NEW
         restartText = GameObject.Find("RestartText");
+        // NEW>
     }
+
+    // <NEW
     public void unFreeze()
     {
         Time.timeScale = 1;
@@ -28,12 +34,7 @@ public class PlayerMovementScriptV4 : MonoBehaviour
         Invoke("unFreeze", 0.05F);
         Time.timeScale = 0.01F;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    // NEW>
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -42,7 +43,9 @@ public class PlayerMovementScriptV4 : MonoBehaviour
             if(collision.GetContact(0).normal == Vector2.up)
             {
                 ground = collision.gameObject;
+                // <NEW
                 restartText.GetComponent<Text>().enabled = false;
+                // NEW>
             }
         }
     }
@@ -54,7 +57,9 @@ public class PlayerMovementScriptV4 : MonoBehaviour
             if(collision.GetContact(0).normal == Vector2.up)
             {
                 ground = collision.gameObject;
+                // <NEW
                 restartText.GetComponent<Text>().enabled = false;
+                // NEW>
             }
         }
     }
@@ -74,11 +79,12 @@ public class PlayerMovementScriptV4 : MonoBehaviour
         {
             rb.AddForce(transform.up * Input.GetAxis("Jump") * verticalForce);
         }
+        // <NEW
         if(transform.position.y < -15)
         {
             restartText.GetComponent<Text>().enabled = true;
             restart();
         }
-
+        // NEW>
     }
 }

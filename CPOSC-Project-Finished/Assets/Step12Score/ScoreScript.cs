@@ -7,7 +7,7 @@ public class ScoreScript : MonoBehaviour
 {
     GameObject scoreText;
     private int score;
-    // Start is called before the first frame update
+
     void Start()
     {
         scoreText = GameObject.Find("ScoreText");
@@ -24,11 +24,5 @@ public class ScoreScript : MonoBehaviour
     {
         score = 0;
         scoreText.GetComponent<Text>().text = "Score: " + score;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

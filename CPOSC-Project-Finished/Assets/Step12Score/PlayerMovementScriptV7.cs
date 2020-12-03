@@ -11,21 +11,13 @@ public class PlayerMovementScriptV7 : MonoBehaviour
     private GameObject victoryText;
     public float horizontalForce = 7.0F;
     public float verticalForce = 250.0F;
-    // Start is called before the first frame update
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         restartText = GameObject.Find("RestartText");
         victoryText = GameObject.Find("VictoryText");
-
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     public void unFreeze()
     {
@@ -43,7 +35,9 @@ public class PlayerMovementScriptV7 : MonoBehaviour
             coin.GetComponent<SpriteRenderer>().enabled = true;
             coin.GetComponent<CircleCollider2D>().enabled = true;
         }
+        // <NEW
         gameObject.GetComponent<ScoreScript>().resetScore();
+        // NEW>
     }
 
     public void OnTriggerEnter2D(Collider2D collider)
@@ -57,7 +51,9 @@ public class PlayerMovementScriptV7 : MonoBehaviour
         {
             collider.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             collider.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            // <NEW
             gameObject.GetComponent<ScoreScript>().incrementScore();
+            // NEW>
         }
     }
 
@@ -107,7 +103,5 @@ public class PlayerMovementScriptV7 : MonoBehaviour
             restartText.GetComponent<Text>().enabled = true;
             restart();
         }
-
-
     }
 }

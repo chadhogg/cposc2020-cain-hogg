@@ -8,24 +8,20 @@ public class PlayerMovementScriptV5 : MonoBehaviour
     private Rigidbody2D rb;
     private GameObject ground;
     private GameObject restartText;
+    // <NEW
     private GameObject victoryText;
+    // NEW>
     public float horizontalForce = 7.0F;
     public float verticalForce = 250.0F;
-    // Start is called before the first frame update
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         restartText = GameObject.Find("RestartText");
+        // <NEW
         victoryText = GameObject.Find("VictoryText");
-
+        // NEW>
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     public void unFreeze()
     {
@@ -40,6 +36,7 @@ public class PlayerMovementScriptV5 : MonoBehaviour
         Time.timeScale = 0.01F;
     }
 
+    // <NEW
     public void OnTriggerEnter2D(Collider2D collider)
     {
         if(collider.gameObject.name.Equals("VictoryObject"))
@@ -48,6 +45,7 @@ public class PlayerMovementScriptV5 : MonoBehaviour
             restart();
         }
     }
+    // NEW>
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
