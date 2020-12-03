@@ -47,6 +47,18 @@ public class PlayerMovementScriptV4 : MonoBehaviour
         }
     }
 
+    public void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.name.Equals("Tilemap"))
+        {
+            if(collision.GetContact(0).normal == Vector2.up)
+            {
+                ground = collision.gameObject;
+                restartText.GetComponent<Text>().enabled = false;
+            }
+        }
+    }
+
     public void OnCollisionExit2D(Collision2D collision)
     {
         if(collision.gameObject.Equals(ground))
