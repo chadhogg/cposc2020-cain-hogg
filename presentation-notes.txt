@@ -1,0 +1,125 @@
+Step 00: (having a player object)
+
+Create a square sprite.
+Created an empty Player object in scene.
+Added a SpriteRendered component to that object.
+Dragged the CharcterSprite to the "Sprite" input in that component.
+Double-clicked the color field to choose a color.
+
+
+Step 01: (making our player obey the law of gravity)
+
+Add a Rigidbody2d component to the Player object.
+
+
+Step 02: (creating platforms)
+
+Create a Tilemap object.
+Copy Grass_Platform_TileSet.png into project.
+Click on sprite, look in Inspector.
+  Change Sprite Mode from Single to Multiple.
+  Change Pixels Per Unite from 100 to 64.
+  Click Sprite Editor button in Inspector
+    Click on second arrow on Sprite Editor popup
+    Change Type to Grid by Cell Size
+    Make sure Pixel Size is 64x64
+    Press Slice button, Apply, Close
+  Apply
+Click on Tilemap, open Tile Palette tab
+  Create New Palette
+  Drag sprite sheet onto new palette
+  If "Edit" has an asterisk, click it
+  Paint a few platforms onto the world
+
+
+Step 03: (stopping when landing on platform)
+
+Add TilemapCollider2D component to Tilemap object
+Add BoxCollider2D component to Player object
+
+
+Step 04: (sideways movement)
+
+Add PlayerMovementScriptV1 script to Player
+Adjust HorizontalForce, observe difference
+
+
+Step 05: (no rotating)
+
+Click on Player, in Inspector go to Rigidbody2D
+Check Constraints -> Freeze Rotation Z box
+
+
+Step 06: (jumping)
+
+Remove PlayerMovementScriptV1 from Player
+Add PlayerMovementScriptV2 to Player
+Adjust verticalForce, observe difference
+Note that we can still "jump" while in midair
+
+
+Step 07: (grounding)
+
+Remove PlayerMovementScriptV2 from Player
+Add PlayerMovementScriptV3 to Player
+
+
+Step 08: (camera)
+
+
+Make MainCamera a child of Player
+
+
+Step 09: (restart)
+
+
+Replaced PlayerMovementScriptV3 with PlayerMovementScriptV4
+Created a UI -> Canvas
+Created a UI -> Text as child of Canvas
+  Renamed it to RestartText
+  Changed Width to 640 and Height to 60
+  Changed text to "You died! -- Restarting"
+  Changed font size to 32
+  Changed color to red
+  Unchecked "Text" (under Canvas Renderer)
+
+
+Step 10: (victory)
+
+
+Replaced PlayerMovementScriptV4 with PlayerMovementScriptV5
+Duplicated RestartText, change name to VictoryText
+  Change color to green
+  Change text to "You made it!"
+  Create a new square sprite named VictoryObject
+    Change position to (27.5, 23.5)
+    Change color to yellow
+    Add a Box Collider2D component
+      Check the isTrigger box
+
+
+Step 11: (collectibles)
+
+
+Create a new circle sprite named Coin
+Drag onto Hierarchy
+  Change color to yellow
+  Change tag to new tag "Coin"
+  Add a CircleCollider2D, change isTrigger checkbox
+  Drag back to assets to create prefab
+Drag prefab onto hierarchy several times
+Replace PlayerMovementScriptV5 with PlayerMovementScriptV6
+
+
+Step 12: (score)
+
+Replace PlayerMovementScriptV6 with PlayerMovementScriptV7
+Add ScoreScript to Player
+Create new Text on Canvas, name ScoreText
+  Change text to "Score: 0"
+  Change font to 20
+  Change color to very black
+  Change Anchor max X/Y to (0.5, 1)
+  Change alignment to Center
+
+future:
