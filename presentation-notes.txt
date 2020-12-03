@@ -1,107 +1,143 @@
-Step 00: (having a player object)
+#####################
+# Hogg Introduction # (Chad)
+#####################
 
-Create a square sprite.
-Created an empty Player object in scene.
-Added a SpriteRendered component to that object.
-Dragged the CharcterSprite to the "Sprite" input in that component.
-Double-clicked the color field to choose a color.
+<who I am>
+<experience with game development / Unity>
 
+#####################
+# Cain Introduction # (Chris)
+#####################
 
-Step 01: (making our player obey the law of gravity)
+<who you are>
+<experience with game development / Unity>
 
+########################
+# Game Engines / Unity # (Chad)
+########################
+
+<engines provide graphics, physics, other commonly used libraries>
+<Unity games consist of game objects in a scene, with components>
+<standard components provide graphics, physics, other capabilities>
+<custom scripts can be components as well>
+<show off Hierarchy, Scene, Inspector, and Assets windows>
+
+#####################################
+# Step 00: (having a player object) # Chad
+#####################################
+
+Create a square sprite, named CharacterSprite.
+Create an empty Player object in scene.
+Add a SpriteRendered component to that object.
+Drag the CharacterSprite to the "Sprite" input in that component.
+Double-click the color field to choose a color.
+
+########################################################
+# Step 01: (making our player obey the law of gravity) # Chad
+########################################################
+
+<observe that player just sits there>
 Add a Rigidbody2d component to the Player object.
+<observe that player falls down>
 
+#################################
+# Step 02: (creating platforms) # Chad
+#################################
 
-Step 02: (creating platforms)
+<explain that we already created a Tilemap object, created tile palette from sprites>
+Paint a few platforms onto the world
 
-Create a Tilemap object.
-Copy Grass_Platform_TileSet.png into project.
-Click on sprite, look in Inspector.
-  Change Sprite Mode from Single to Multiple.
-  Change Pixels Per Unite from 100 to 64.
-  Click Sprite Editor button in Inspector
-    Click on second arrow on Sprite Editor popup
-    Change Type to Grid by Cell Size
-    Make sure Pixel Size is 64x64
-    Press Slice button, Apply, Close
-  Apply
-Click on Tilemap, open Tile Palette tab
-  Create New Palette
-  Drag sprite sheet onto new palette
-  If "Edit" has an asterisk, click it
-  Paint a few platforms onto the world
+################################################
+# Step 03: (stopping when landing on platform) # Chad
+################################################
 
-
-Step 03: (stopping when landing on platform)
-
+<observe that player falls through platform>
 Add TilemapCollider2D component to Tilemap object
 Add BoxCollider2D component to Player object
+<observe that player stops on platform>
 
-
-Step 04: (sideways movement)
+################################
+# Step 04: (sideways movement) # Chris
+################################
 
 Add PlayerMovementScriptV1 script to Player
+<explain what is happening in the script>
 Adjust HorizontalForce, observe difference
 
+##########################
+# Step 05: (no rotating) # Chris
+##########################
 
-Step 05: (no rotating)
-
+<observe that player rotates during movement>
 Click on Player, in Inspector go to Rigidbody2D
 Check Constraints -> Freeze Rotation Z box
+<observe that player no longer rotates>
 
-
-Step 06: (jumping)
+######################
+# Step 06: (jumping) # Chris
+######################
 
 Remove PlayerMovementScriptV1 from Player
+<explain what script does>
 Add PlayerMovementScriptV2 to Player
 Adjust verticalForce, observe difference
-Note that we can still "jump" while in midair
 
+########################
+# Step 07: (grounding) # Chris
+########################
 
-Step 07: (grounding)
-
+<observe that player can jump while in midair>
 Remove PlayerMovementScriptV2 from Player
+<explain what script does>
 Add PlayerMovementScriptV3 to Player
+<observe that player only jumps while grounded>
 
-
-Step 08: (camera)
-
+#####################
+# Step 08: (camera) # Chris
+#####################
 
 Make MainCamera a child of Player
+<observe that camera follows player, and there are more platforms>
 
+######################
+# Step 09: (restart) # Chad
+######################
 
-Step 09: (restart)
+<observe that infinite falling isn't fun>
+Create a UI -> Canvas
+Create a UI -> Text as child of Canvas
+  Rename it to RestartText
+  Change Width to 640 and Height to 60
+  Change text to "You died! -- Restarting"
+  Change font size to 32
+  Change color to red
+  Uncheck "Text" (under Canvas Renderer)
+  Replace PlayerMovementScriptV3 with PlayerMovementScriptV4
+  <explain what script does>
+<observe death>
 
+######################
+# Step 10: (victory) # Chad
+######################
 
-Replaced PlayerMovementScriptV3 with PlayerMovementScriptV4
-Created a UI -> Canvas
-Created a UI -> Text as child of Canvas
-  Renamed it to RestartText
-  Changed Width to 640 and Height to 60
-  Changed text to "You died! -- Restarting"
-  Changed font size to 32
-  Changed color to red
-  Unchecked "Text" (under Canvas Renderer)
+Create a new square sprite named VictoryObject
+  Change position to (27.5, 23.5)
+  Change color to yellow
+  Add a Box Collider2D component
+    Check the isTrigger box
+    Duplicate RestartText, change name to VictoryText
+      Change color to green
+      Change text to "You made it!"
+Replace PlayerMovementScriptV4 with PlayerMovementScriptV5
+<explain what script does>
+<observe victory>
 
-
-Step 10: (victory)
-
-
-Replaced PlayerMovementScriptV4 with PlayerMovementScriptV5
-Duplicated RestartText, change name to VictoryText
-  Change color to green
-  Change text to "You made it!"
-  Create a new square sprite named VictoryObject
-    Change position to (27.5, 23.5)
-    Change color to yellow
-    Add a Box Collider2D component
-      Check the isTrigger box
-
-
-Step 11: (collectibles)
-
+###########################
+# Step 11: (collectibles) # Chris
+###########################
 
 Create a new circle sprite named Coin
+<explain benefit of prefabs>
 Drag onto Hierarchy
   Change color to yellow
   Change tag to new tag "Coin"
@@ -109,17 +145,25 @@ Drag onto Hierarchy
   Drag back to assets to create prefab
 Drag prefab onto hierarchy several times
 Replace PlayerMovementScriptV5 with PlayerMovementScriptV6
+<explain what script does>
+<observe coin collection>
 
+####################
+# Step 12: (score) # Chris
+####################
 
-Step 12: (score)
-
-Replace PlayerMovementScriptV6 with PlayerMovementScriptV7
-Add ScoreScript to Player
 Create new Text on Canvas, name ScoreText
   Change text to "Score: 0"
   Change font to 20
   Change color to very black
   Change Anchor max X/Y to (0.5, 1)
   Change alignment to Center
+Add ScoreScript to Player
+<explain what script does>
+Replace PlayerMovementScriptV6 with PlayerMovementScriptV7
+<explain what script does>
+<observe playing with score>
 
-future:
+##################
+# Thanks And Q&A #
+##################
